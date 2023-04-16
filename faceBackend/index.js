@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 mongoose
   .connect(
-    "mongodb+srv://anassDabaghi:Anassking1@cluster0.liej1dy.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://anassDabaghi:Ayoubking1@cluster0.liej1dy.mongodb.net/?retryWrites=true&w=majority"
   )
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.error(err));
