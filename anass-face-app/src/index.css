@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: main;
+  src: url(./components/HOC/media/fonts/Gill\ Sans\ Medium.otf);
+}
+.userMessage{
+  background: rgb(0, 242, 255);
+}
+body {
+margin: 0;
+font-family:  main;
+box-sizing: border-box;
+padding: 0;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+background: #1A101D;
+}
+
+.likedMessage{
+  @apply text-rose-500;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+/*action buttons classes*/
+.green{
+  background-color: rgb(22, 223, 123);
+}
+.gold{
+  background-color: gold;
+}
+.red{
+  background-color: rgb(245, 4, 60);
+}
+.indigo{
+  background-color: rgb(203, 8, 210);
+}
+
+.active{
+  color: #be068b;
+  border-color: #be068b;
+}
+.wrapper{
+  height: 100vh;
+}
+.login{
+  width: min(100%,720px);
+}
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.577);
+  border-radius: 5px;
+}
+*{
+  box-sizing: border-box;
+  /* border: 1px solid yellow; */
+}
+.rose{
+  color: rgb(255, 28, 96);
+}
+.cyan{
+  color: rgb(0, 204, 255);
+}
+.admin{
+  background-color: rgb(2, 143, 98);
+}
+.main{
+  background-color: #2b1b31;
+}
+@media screen and (max-width: 1024px)  {
+  :root{
+    font-size: 11px;
+  }
+}
+

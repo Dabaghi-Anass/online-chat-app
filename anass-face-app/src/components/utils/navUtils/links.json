@@ -1,0 +1,30 @@
+[
+    {
+        "name" : "users",
+        "icon" : "home",
+        "path" : "/users"
+        ,"id" : "4"
+    },
+    {
+        "name" : "requests",
+        "icon" : "notifications",
+        "path" : "/requests"
+        ,"id" : "5"
+    },
+    {
+        "name" : "profile",
+        "icon" : "person",
+        "path" : "/profile"
+        ,"id" : "1"
+    },
+    {
+        "name" : "messages",
+        "icon" : "chatbubble-ellipses",
+        "path" : "/messages","id" : "2"
+    },  
+    {
+        "name" : "friends",
+        "icon" : "people-circle",
+        "path" : "/friends","id" : "3"
+    }
+]
