@@ -48,7 +48,7 @@ function App() {
           <div className="App">
             <div
               id="notif"
-              className="bg-[#4f2360] hidden text-white transition duration-300 truncate left-[50%] translate-x-[-50%] top-15 shadow-md shadow-[#954ab3] bg-opacity-90 p-4 lg:w-[40%] w-[80%] absolute text-2xl text-center rounded-xl border-2 border-indigo-500"
+              className="bg-[#4f2360] hidden text-white transition duration-300 truncate left-[50%] translate-x-[-50%] top-15 shadow-md shadow-[#954ab3] bg-opacity-90 p-4 lg:w-[40%] w-[80%] fixed text-2xl text-center rounded-xl border-2 border-indigo-500"
             ></div>
             <NavBar />
             {pending && <Load />}

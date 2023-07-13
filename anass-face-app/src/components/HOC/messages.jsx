@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from "react";
 import http from "../../services/http";
 import Api from "../../context/api";
 import SocketCtx from "../../context/socket";
+import { getUserById } from "../../services/user";
 const getDayName = (num) => {
   switch (num) {
     case 1:
@@ -14,12 +15,12 @@ const getDayName = (num) => {
       return "Thursday";
     case 5:
       return "Friday";
-      case 6:
-        return "Saturday";
+    case 6:
+      return "Saturday";
     default:
       return "Sunday";
-    }
-  };
+  }
+};
 
 const Messages = ({ currentUser, selectedUser }) => {
   const API = useContext(Api);
@@ -47,13 +48,14 @@ const Messages = ({ currentUser, selectedUser }) => {
   const handleChange = ({ target: input }) => {
     setMessageRef((prev) => input.value);
   };
-const showNotif = (n) => {
+  const showNotif = (n) => {
     const notdiv = document.getElementById("notif");
     notdiv.innerHTML = n;
     notdiv.classList.remove("hidden");
-    setTimeout(() => {
+    let id = setTimeout(() => {
       notdiv.classList.add("hidden");
-    }, 3000);
+      clearTimeout(id);
+    }, 2000);
   };
   const scroll = () => {
     let messageContainer = document.getElementById("messageContainer");
@@ -97,7 +99,6 @@ const showNotif = (n) => {
       message._id = data._id;
       setMessages((prev) => [...prev, message]);
       socket.emit("message", message);
-      setUiUpdated((prev) => !prev);
     } catch (error) {
       return;
     }
@@ -135,26 +136,30 @@ const showNotif = (n) => {
       return;
     }
   };
-  socket.on("message-deleted", (id) => {
-    const messagesClone = messages.filter((m) => m._id !== id);
-    setMessages(messagesClone);
-  });
-  socket.on("message-liked", (data) => {
-    let messagesClone = [...messages];
-    try {
-      let message = messagesClone.find((msg) => msg._id === data._id);
-      let index = messagesClone.indexOf(message);
-      messagesClone[index] = data;
+  useEffect(() => {
+    socket.on("message-deleted", (id) => {
+      const messagesClone = messages.filter((m) => m._id !== id);
       setMessages(messagesClone);
-      //call server
-    } catch (error) {
-      setMessages([...new Set(messagesClone)]);
-    }
-  });
-  socket.on("message", (mess) => {
-    showNotif(`${mess.name} : ${mess.content}`);
-    setMessages((prev) => [...new Set([...prev, mess])]);
-  });
+    });
+    socket.on("message-liked", (data) => {
+      let messagesClone = [...messages];
+      try {
+        let message = messagesClone.find((msg) => msg._id === data._id);
+        let index = messagesClone.indexOf(message);
+        messagesClone[index] = data;
+        setMessages(messagesClone);
+        //call server
+      } catch (error) {
+        setMessages([...new Set(messagesClone)]);
+      }
+    });
+    socket.on("message", async (mess) => {
+      await getUserById(mess.sender).then((sender) => {
+        showNotif(`${sender.fullName} : ${mess.content}`);
+      });
+      setMessages((prev) => [...new Set([...prev, mess])]);
+    });
+  }, []);
   useEffect(() => {
     getMessages();
   }, [selectedUser]);
@@ -211,12 +216,12 @@ const showNotif = (n) => {
                 </div>
               </div>
               <span
-                className={`text-3xl flex items-center ${
+                className={`text-3xl flex icon items-center ${
                   m.isliked ? "likedMessage" : "text-white"
                 }`}
                 onClick={() => likeMessage(m._id)}
               >
-                <ion-icon name="heart"></ion-icon>
+                <ion-icon style={{ zIndex: 2 }} name="heart"></ion-icon>
               </span>
               <span
                 className={`text-[13px] text-gray-100 flex items-center gap-2 ${

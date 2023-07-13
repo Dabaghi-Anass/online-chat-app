@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState, useTransition } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { addFriend, cancelRequest,  getRequestsFromServer } from "../../services/user";
+import {
+  addFriend,
+  cancelRequest,
+  getRequestsFromServer,
+} from "../../services/user";
 import { context as userContextProvider } from "../../context/user";
 import Load from "../utils/navUtils/load";
 
@@ -12,7 +16,7 @@ const Requests = () => {
 
   const getRequests = async (userId) => {
     try {
-      const  requests  = await getRequestsFromServer(userId);
+      const requests = await getRequestsFromServer(userId);
       setData([...new Set(requests)]);
     } catch (error) {
       console.log(error);

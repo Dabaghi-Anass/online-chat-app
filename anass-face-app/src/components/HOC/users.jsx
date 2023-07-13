@@ -72,7 +72,7 @@ const Users = () => {
           <ion-icon name="search"></ion-icon>
         </span>
       </label>
-      <div className="w-full users-container gap-4 p-4 mt-8 flex flex-wrap justify-evenly">
+      <div className="w-full users-container gap-4 p-4 mt-8">
         {users.map(({ fullName, email, gender, _id ,isAdmin}) => (
           <User data={{ fullName, email, gender, _id ,isAdmin}} key={_id} />
           ))}

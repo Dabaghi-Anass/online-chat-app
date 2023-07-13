@@ -17,10 +17,11 @@ const Chat = () => {
   const { user: currentUser } = useContext(userContextProvider);
   const API = useContext(Api);
   socket?.emit("join-account", currentUser?._id);
-
   const getFriends = async (userId) => {
     try {
-      const { data: friends } = await http.get(`${API}/api/users/friends/${userId}`);
+      const { data: friends } = await http.get(
+        `${API}/api/users/friends/${userId}`
+      );
       setData(friends);
     } catch (error) {
       console.log(error);
@@ -53,7 +54,12 @@ const Chat = () => {
         <div className="text-white xl:flex xl:h-[93vh] mt-6">
           <div className="min-w-[35%] h-full">
             <div className="flex items-center w-full justify-between px-2">
-              <button className="font-bold text-3xl" onClick={()=>setSelectedUser(false)}>Chat</button>
+              <button
+                className="font-bold text-3xl"
+                onClick={() => setSelectedUser(false)}
+              >
+                Chat
+              </button>
               <button
                 className=" text-4xl xl:hidden mr-3"
                 onClick={() => {
@@ -69,7 +75,9 @@ const Chat = () => {
                   <li
                     key={f._id}
                     onClick={() => joinChat(f)}
-                    className=" w-full flex items-center  justify-between text-xl  py-2 px-1 border-b hover:brightness-110 hover:bg-gray-100 hover:bg-opacity-5 border-gray-300"
+                    className={`${
+                      f._id === selectedUser._id ? "selec" : ""
+                    }  w-full flex items-center  justify-between text-xl  py-2 px-1 border-b hover:brightness-110 hover:bg-gray-100 hover:bg-opacity-5 border-gray-300`}
                   >
                     <span>{f.fullName}</span>
                     <span className="flex items-center gap-4">
