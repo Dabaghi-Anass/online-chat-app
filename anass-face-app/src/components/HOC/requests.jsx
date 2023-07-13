@@ -45,7 +45,7 @@ const Requests = () => {
   useEffect(() => {
     startTrannsition(() => {
       if (!currentUser?.email) return (window.location = "/auth");
-      getRequests(currentUser._id);
+      getRequests(currentUser?._id);
     });
   }, []);
   return (
@@ -78,7 +78,7 @@ const Requests = () => {
                 <ul className="w-full lg:h-fit overflow-y-scroll mt-8">
                   {data?.map((f) => (
                     <li
-                      key={f._id}
+                      key={f?._id}
                       className="w-full flex items-center mt-1 justify-between text-2xl py-2 border-b border-gray-300"
                     >
                       <span>{f.fullName}</span>

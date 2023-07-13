@@ -22,7 +22,7 @@ const Friends = () => {
   useEffect(() => {
     startTrannsition(() => {
       if (!currentUser?.email) return (window.location = "/auth");
-      getFriends(currentUser._id);
+      getFriends(currentUser?._id);
     });
   }, []);
   return (
@@ -61,13 +61,13 @@ const Friends = () => {
                 <ul className="w-full lg:h-fit overflow-y-scroll mt-1">
                   {data.map((f) => (
                     <li
-                      key={f._id}
+                      key={f?._id}
                       className="w-full flex items-center mt-8 justify-between text-2xl py-2 border-b border-gray-300"
                     >
                       <span>{f.fullName}</span>
                       <span className="flex items-center gap-4">
                         <Link
-                          to={`/profile/${f._id}`}
+                          to={`/profile/${f?._id}`}
                           className="text-[#be068b]"
                         >
                           view

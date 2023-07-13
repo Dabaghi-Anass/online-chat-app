@@ -19,7 +19,7 @@ const Users = () => {
   const getUsers = async () => {
     if (!currentUser) return navigate("/auth");
     const { data } = await http.get(`${API}/api/users`);
-    const withoutUser = data.filter((user) => user._id !== currentUser._id);
+    const withoutUser = data.filter((user) => user?._id !== currentUser?._id);
     setUsers((prev) => withoutUser);
   };
   useEffect(() => {
@@ -39,8 +39,10 @@ const Users = () => {
     }
     const newUsers = users.filter(
       (u) =>
-        u.fullName.includes(text) || u.fullName.includes(text.toLowerCase()) ||
-        u.email.includes(text )||u.email.includes(text.toLowerCase())
+        u.fullName.includes(text) ||
+        u.fullName.includes(text.toLowerCase()) ||
+        u.email.includes(text) ||
+        u.email.includes(text.toLowerCase())
     );
     setUsers(newUsers);
   };
@@ -73,9 +75,9 @@ const Users = () => {
         </span>
       </label>
       <div className="w-full users-container gap-4 p-4 mt-8">
-        {users.map(({ fullName, email, gender, _id ,isAdmin}) => (
-          <User data={{ fullName, email, gender, _id ,isAdmin}} key={_id} />
-          ))}
+        {users.map(({ fullName, email, gender, _id, isAdmin }) => (
+          <User data={{ fullName, email, gender, _id, isAdmin }} key={_id} />
+        ))}
       </div>
     </div>
   );

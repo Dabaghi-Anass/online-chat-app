@@ -36,7 +36,7 @@ const Messages = ({ currentUser, selectedUser }) => {
       return data;
     },
     delete: async (message) => {
-      await http.delete(`${API}/api/messages/${message._id}`);
+      await http.delete(`${API}/api/messages/${message?._id}`);
     },
     get: async (sender, reciever) => {
       const { data } = await http.get(
@@ -64,8 +64,8 @@ const Messages = ({ currentUser, selectedUser }) => {
 
   const startPressTimer = (message) => {
     timerRef.current = setTimeout(() => {
-      if (message.sender === currentUser._id) {
-        setAction(message._id);
+      if (message.sender === currentUser?._id) {
+        setAction(message?._id);
       }
     }, 500);
   };
@@ -90,13 +90,13 @@ const Messages = ({ currentUser, selectedUser }) => {
         _id: "",
         content: messageRef,
         isliked: false,
-        sender: currentUser._id,
-        receiver: selectedUser._id,
+        sender: currentUser?._id,
+        receiver: selectedUser?._id,
         sendedAt: `${time.h}:${time.m},${dayName}`,
       };
       setMessageRef("");
       const { data } = await http.post(`${API}/api/messages`, message);
-      message._id = data._id;
+      message._id = data?._id;
       setMessages((prev) => [...prev, message]);
       socket.emit("message", message);
     } catch (error) {
@@ -105,7 +105,7 @@ const Messages = ({ currentUser, selectedUser }) => {
   };
 
   const getMessages = async () => {
-    const data = await Message.get(currentUser._id, selectedUser._id);
+    const data = await Message.get(currentUser?._id, selectedUser?._id);
     setMessages([...new Set(data)]);
   };
   const likeMessage = async (_id) => {
@@ -125,9 +125,9 @@ const Messages = ({ currentUser, selectedUser }) => {
   };
   const delMessage = async (id) => {
     try {
-      const message = messages.find((m) => m._id === id);
-      if (message.sender === currentUser._id) {
-        const newmessages = messages.filter((m) => m._id !== id);
+      const message = messages.find((m) => m?._id === id);
+      if (message.sender === currentUser?._id) {
+        const newmessages = messages.filter((m) => m?._id !== id);
         setMessages(newmessages);
         await http.delete(`${API}/api/messages/${id}`);
         socket.emit("delete-message", message);
@@ -138,13 +138,13 @@ const Messages = ({ currentUser, selectedUser }) => {
   };
   useEffect(() => {
     socket.on("message-deleted", (id) => {
-      const messagesClone = messages.filter((m) => m._id !== id);
+      const messagesClone = messages.filter((m) => m?._id !== id);
       setMessages(messagesClone);
     });
     socket.on("message-liked", (data) => {
       let messagesClone = [...messages];
       try {
-        let message = messagesClone.find((msg) => msg._id === data._id);
+        let message = messagesClone.find((msg) => msg?._id === data._id);
         let index = messagesClone.indexOf(message);
         messagesClone[index] = data;
         setMessages(messagesClone);
@@ -181,10 +181,10 @@ const Messages = ({ currentUser, selectedUser }) => {
         >
           {messages.map((m) => (
             <div
-              key={m._id}
+              key={m?._id}
               onMouseOver={() => {
                 if (m.sender === currentUser._id) {
-                  setAction(m._id);
+                  setAction(m?._id);
                 }
               }}
               onMouseLeave={() => setAction("")}
