@@ -1,17 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
-@font-face {
-  font-family: main;
-  src: url(./components/HOC/media/fonts/Gill\ Sans\ Medium.otf);
-}
 .userMessage {
   background: rgb(0, 242, 255);
 }
 body {
   margin: 0;
-  font-family: main;
+  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
   padding: 0;
   -webkit-font-smoothing: antialiased;
