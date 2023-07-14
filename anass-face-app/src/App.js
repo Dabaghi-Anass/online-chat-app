@@ -21,9 +21,9 @@ import "react-toastify/dist/ReactToastify.css";
 const API = process.env.REACT_APP_API;
 
 function App() {
+  const user = getCurrentUser(); 
   const [pending, startLoading] = useTransition();
   const navigate = useNavigate();
-  const user = getCurrentUser();
   const [socket, setSocket] = useState();
   useEffect(() => {
     const newSocket = io(`${API}`);

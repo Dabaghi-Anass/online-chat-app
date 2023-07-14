@@ -25,7 +25,6 @@ const getDayName = (num) => {
 const Messages = ({ currentUser, selectedUser }) => {
   const API = useContext(Api);
   const socket = useContext(SocketCtx);
-  const [isUiUpdated, setUiUpdated] = useState(false);
   const [messageRef, setMessageRef] = useState("");
   const [messages, setMessages] = useState([]);
   const [action, setAction] = useState();

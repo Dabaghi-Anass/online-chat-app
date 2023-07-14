@@ -11,18 +11,20 @@ const Friends = () => {
   const { user: currentUser } = useContext(userContextProvider);
   const API = useContext(Api);
   socket?.emit("join-account", currentUser?._id);
-  const getFriends = async (userId) => {
+  async function getFriends(userId) {
     try {
-      const { data: friends } = await http.get(`${API}/api/users/friends/${userId}`);
-      setData([...new Set(friends)]);
+      const { data: friends } = await http.get(
+        `${API}/api/users/friends/${userId}`
+      );
+      setData([...new Set([...friends])]);
     } catch (error) {
       console.log(error);
     }
-  };
+  }
   useEffect(() => {
-    startTrannsition(() => {
+    startTrannsition(async () => {
       if (!currentUser?.email) return (window.location = "/auth");
-      getFriends(currentUser?._id);
+      await getFriends(currentUser?._id);
     });
   }, []);
   return (

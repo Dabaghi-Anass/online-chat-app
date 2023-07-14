@@ -7,21 +7,23 @@ import Api from "../../context/api";
 import { useNavigate } from "react-router-dom";
 
 const Users = () => {
-  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
+  const previousSearch = useRef(search);
   const { user: currentUser } = useContext(userContext);
   const socket = useContext(socketCtx);
-  socket?.emit("join-account", currentUser?._id);
   const API = useContext(Api);
-  const previousSearch = useRef(search);
   const [query, setQuery] = useState("");
-  const getUsers = async () => {
+  socket?.emit("join-account", currentUser?._id);
+  async function getUsers() {
     if (!currentUser) return navigate("/auth");
     const { data } = await http.get(`${API}/api/users`);
-    const withoutUser = data.filter((user) => user?._id !== currentUser?._id);
-    setUsers((prev) => withoutUser);
-  };
+    const usersWithouCurrentUser = data.filter(
+      (user) => user?._id !== currentUser?._id
+    );
+    setUsers((prev) => [...usersWithouCurrentUser]);
+  }
   useEffect(() => {
     setQuery(previousSearch.current);
     previousSearch.current = search;

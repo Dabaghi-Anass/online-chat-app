@@ -17,7 +17,7 @@ const Requests = () => {
   const getRequests = async (userId) => {
     try {
       const requests = await getRequestsFromServer(userId);
-      setData([...new Set(requests)]);
+      setData([...new Set([...requests])]);
     } catch (error) {
       console.log(error);
     }
