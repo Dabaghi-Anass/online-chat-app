@@ -22,7 +22,7 @@ const Chat = () => {
       const { data: friends } = await http.get(
         `${API}/api/users/friends/${userId}`
       );
-      setData(friends);
+      setData((p) => [...friends]);
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +45,7 @@ const Chat = () => {
     if (commingUser) {
       joinChat(commingUser);
     }
-  }, []);
+  }, [currentUser]);
 
   return (
     <>
@@ -76,7 +76,9 @@ const Chat = () => {
                     key={f._id}
                     onClick={() => joinChat(f)}
                     className={`${
-                      f?._id === selectedUser?._id ? "selec" : ""
+                      f?._id === selectedUser?._id
+                        ? "bg-gray-100 bg-opacity-5"
+                        : ""
                     }  w-full flex items-center  justify-between text-xl  py-2 px-1 border-b hover:brightness-110 hover:bg-gray-100 hover:bg-opacity-5 border-gray-300`}
                   >
                     <span>{f.fullName}</span>

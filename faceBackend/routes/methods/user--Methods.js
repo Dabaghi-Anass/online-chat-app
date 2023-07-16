@@ -119,7 +119,7 @@ async function getFriends(req, res) {
     const user = await User.findOne({ _id: req.params.id });
     if (!user) return res.send("user not found");
     let friends = await User.find();
-    friends = friends.filter((f) => f.friends.includes(user._id));
+    friends = await friends.filter((f) => f.friends.includes(user._id));
     res.status(200).send(friends);
   } catch (err) {
     res.send(err.message).status(400);

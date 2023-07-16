@@ -19,34 +19,25 @@ const Users = () => {
   async function getUsers() {
     if (!currentUser) return navigate("/auth");
     const { data } = await http.get(`${API}/api/users`);
-    const usersWithouCurrentUser = data.filter(
+    const usersWithouCurrentUser = await data.filter(
       (user) => user?._id !== currentUser?._id
     );
     setUsers((prev) => [...usersWithouCurrentUser]);
+    return [...usersWithouCurrentUser];
   }
   useEffect(() => {
     setQuery(previousSearch.current);
     previousSearch.current = search;
   }, [search]);
-  const searchUser = (text) => {
-    if (!text) return getUsers();
-    if (text === query) {
-      getUsers();
+  const searchUser = async (text) => {
+    await getUsers().then((users) => {
       const newUsers = users.filter(
         (u) =>
-          u.fullName.includes(text || text.toLowerCase()) ||
-          u.email.includes(text || text.toLowerCase())
+          u.fullName.toLowerCase().includes(text?.toLowerCase()) ||
+          u.email.toLowerCase().includes(text?.toLowerCase())
       );
       setUsers(newUsers);
-    }
-    const newUsers = users.filter(
-      (u) =>
-        u.fullName.includes(text) ||
-        u.fullName.includes(text.toLowerCase()) ||
-        u.email.includes(text) ||
-        u.email.includes(text.toLowerCase())
-    );
-    setUsers(newUsers);
+    });
   };
   const handleChange = ({ target: input }) => {
     setSearch((prev) => input.value);
