@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const User = ({ data }) => {
   return (
     <div
-      className={`user w-500 p-3 flex items-center justify-between rounded overflow-hidden flex-grow flex-shrink${
+      className={`user w-500 p-3 flex bg-[#7364ff62] items-center justify-between rounded overflow-hidden flex-grow flex-shrink${
         data.isAdmin ? "admin" : "main"
       }`}
     >

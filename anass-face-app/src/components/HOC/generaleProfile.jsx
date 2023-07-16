@@ -92,25 +92,25 @@ const UserProfile = () => {
     try {
       switch (action) {
         case "add":
-          dispatch({name : "cancel"})
+          dispatch({ name: "cancel" });
           await requestFriendship(id, _id);
           return;
         case "cancel":
-            dispatch({name : "add"})
+          dispatch({ name: "add" });
           await cancelRequest(id, _id);
           return;
         case "unfriend":
-            dispatch({ name: "add" });
-            await deleteFriend(id, _id);
-            return;
+          dispatch({ name: "add" });
+          await deleteFriend(id, _id);
+          return;
         case "accept":
-            dispatch({name : "unfriend"})
+          dispatch({ name: "unfriend" });
           await addFriend(id, _id);
           await cancelRequest(id, _id);
           navigate("/friends");
           return;
-        }
-        setClicked((prev) => !prev);
+      }
+      setClicked((prev) => !prev);
     } catch (error) {
       setClicked((prev) => !prev);
       return;
@@ -162,7 +162,7 @@ const UserProfile = () => {
     <div className="w-full UserProfile flex flex-col lg:flex-row lg:gap-8 lg:items-start lg:p-8 items-start lg:text-xl gap-4 mt-8 h-fit">
       {isLoading && <Load />}
       {!isLoading && (
-        <div className="w-full mt-12 lg:mt-0 flex gap-8 flex-col bg-[#2b1b31]  text-white overflow-y-scroll h-4/5  py-4 px-8 rounded">
+        <div className="w-full mt-12 lg:mt-0 flex gap-8 flex-col bg-[#120130]  text-white overflow-y-scroll h-4/5  py-4 px-8 rounded">
           <span className=" text-3xl font-mono uppercase flex items-center justify-between">
             <span>Profile</span>
             {getActionButton(action)}
@@ -173,11 +173,7 @@ const UserProfile = () => {
           </span>
           <span className="flex w-full truncate  text-2xl text-cyan-400 justify-between gap-4">
             <span>{user.email || ""}</span>
-            <span
-              className={`${
-                user.gender === "female" ? "rose" : "cyan"
-              }`}
-            >
+            <span className={`${user.gender === "female" ? "rose" : "cyan"}`}>
               {user.gender === "male" ? `male` : `female`}
               <span>
                 <ion-icon

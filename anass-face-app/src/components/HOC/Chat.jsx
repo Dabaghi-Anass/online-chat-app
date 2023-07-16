@@ -83,7 +83,7 @@ const Chat = () => {
                   >
                     <span>{f.fullName}</span>
                     <span className="flex items-center gap-4">
-                      <Link to={`/profile/${f._id}`} className="text-[#be068b]">
+                      <Link to={`/profile/${f._id}`} className="text-[#ff004c]">
                         view
                       </Link>
                       <button onClick={() => joinChat(f)}>message</button>

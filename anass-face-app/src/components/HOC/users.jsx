@@ -50,19 +50,19 @@ const Users = () => {
     <div className="flex p-2 flex-col items-center w-full mt-12">
       <label
         htmlFor="search"
-        className="w-full lg:w-[60%] px-4  text-white flex gap-4 items-center border-b active:border-rose-500 focus:border-rose-500 border-cyan-500"
+        className="w-full lg:w-[60%]  px-1  text-white flex gap-4 items-center border-b active:border-rose-500 focus:border-rose-500 hover:border-rose-500 border-cyan-500"
       >
         <input
           value={search}
           type="search"
           id="search"
-          className="w-full h-full bg-transparent p-4 outline-none  "
+          className="w-full h-full bg-transparent py-2 outline-none  "
           placeholder="search users"
           onChange={(e) => handleChange(e)}
         />
         <span
           onClick={() => searchUser(search)}
-          className="flex items-center h-full text-4xl hover:text-cyan-500"
+          className="flex items-center h-full text-2xl hover:text-cyan-500"
         >
           <ion-icon name="search"></ion-icon>
         </span>

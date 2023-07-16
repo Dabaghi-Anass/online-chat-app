@@ -13,7 +13,7 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #1a101d;
+  background: #11041f;
 }
 
 .likedMessage {
@@ -26,21 +26,21 @@ code {
 }
 /*action buttons classes*/
 .green {
-  background-color: rgb(22, 223, 123);
+  background-color: rgb(7, 209, 88);
 }
 .gold {
-  background-color: gold;
+  background-color: rgb(255, 153, 0);
 }
 .red {
   background-color: rgb(245, 4, 60);
 }
 .indigo {
-  background-color: rgb(203, 8, 210);
+  background-color: rgb(163, 8, 202);
 }
 
 .active {
-  color: #be068b;
-  border-color: #be068b;
+  color: #ff004c;
+  border-color: #ff004c;
 }
 .wrapper {
   height: 100vh;
@@ -70,7 +70,7 @@ code {
   background-color: rgb(2, 143, 98);
 }
 .main {
-  background-color: #2b1b31;
+  background-color: #120130;
 }
 @media screen and (max-width: 1024px) {
   :root {

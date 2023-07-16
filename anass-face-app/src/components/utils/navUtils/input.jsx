@@ -8,7 +8,7 @@ const Input = ({ error, name, type, label = "text", ...rest }) => {
         type={type}
         required={true}
         name={name}
-        className="outline-none rounded-2xl text-white bg-transparent text-xl border border-[#063abe] w-full px-4 py-2 active:border-[#be068b] focus:border-[#be068b]"
+        className="outline-none rounded-2xl text-white bg-transparent text-xl border border-[#063abe] w-full px-4 py-2 active:border-[#ff004c] focus:border-[#ff004c]"
         placeholder={label}
         autoComplete="false"
       />

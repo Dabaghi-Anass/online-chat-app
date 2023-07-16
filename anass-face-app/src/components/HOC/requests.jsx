@@ -60,7 +60,7 @@ const Requests = () => {
           )}
           {data?.[0] && (
             <div className="lg:w-3/4 w-full mt-8">
-              <div className="w-full text-white bg-[#2b1b31]  py-4 px-8 rounded">
+              <div className="w-full text-white bg-[#120130]  py-4 px-8 rounded">
                 <h1 className=" text-3xl font-semibold flex items-center  gap-4">
                   <span>Requests</span>
                   <span
@@ -84,7 +84,7 @@ const Requests = () => {
                       <span>{f.fullName}</span>
                       <span className="flex items-center gap-4">
                         <button
-                          className="text-[#be068b]"
+                          className="text-[#ff004c]"
                           onClick={() => acceptRequest(f._id)}
                         >
                           accept

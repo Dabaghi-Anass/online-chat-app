@@ -6,19 +6,19 @@ import { getUserById } from "../../services/user";
 const getDayName = (num) => {
   switch (num) {
     case 1:
-      return "Monday";
+      return "Mon";
     case 2:
-      return "Tuesday";
+      return "Tue";
     case 3:
-      return "Wednesday";
+      return "Wed";
     case 4:
-      return "Thursday";
+      return "Thu";
     case 5:
-      return "Friday";
+      return "Fri";
     case 6:
-      return "Saturday";
+      return "Sat";
     default:
-      return "Sunday";
+      return "Sun";
   }
 };
 
@@ -138,7 +138,7 @@ const Messages = ({ currentUser, selectedUser }) => {
   useEffect(() => {
     socket.on("message-deleted", (id) => {
       const messagesClone = messages.filter((m) => m?._id !== id);
-      setMessages(messagesClone);
+      setMessages([...messagesClone]);
     });
     socket.on("message-liked", (data) => {
       let messagesClone = [...messages];
@@ -146,10 +146,10 @@ const Messages = ({ currentUser, selectedUser }) => {
         let message = messagesClone.find((msg) => msg?._id === data._id);
         let index = messagesClone.indexOf(message);
         messagesClone[index] = data;
-        setMessages(messagesClone);
+        setMessages([...messagesClone]);
         //call server
       } catch (error) {
-        setMessages([...new Set(messagesClone)]);
+        setMessages([...new Set([...messagesClone])]);
       }
     });
     socket.on("message", async (mess) => {

@@ -37,7 +37,7 @@ const Friends = () => {
               <span>there are no friends</span>
               <Link
                 to="/users"
-                className="indigo py-2 px-4 rounded hover:brightness-150 mt-8 uppercase"
+                className="indigo py-2 px-4 rounded hover:brightness-110 mt-8 uppercase"
               >
                 get more friends
               </Link>
@@ -45,7 +45,7 @@ const Friends = () => {
           )}
           {data[0] && (
             <div className="lg:w-3/4 w-full lg:h-fit mt-8">
-              <div className="w-full text-white  lg:bg-opacity-95 py-4 px-8 rounded-xl bg-[#2b1b31]">
+              <div className="w-full text-white  lg:bg-opacity-95 py-4 px-8 rounded-xl bg-[#120130]">
                 <h1 className=" text-3xl font-semibold  flex items-center  gap-4">
                   <span>Friends</span>
                   <span
@@ -70,7 +70,7 @@ const Friends = () => {
                       <span className="flex items-center gap-4">
                         <Link
                           to={`/profile/${f?._id}`}
-                          className="text-[#be068b]"
+                          className="text-[#ff004c]"
                         >
                           view
                         </Link>

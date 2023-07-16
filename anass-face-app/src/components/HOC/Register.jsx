@@ -122,9 +122,7 @@ const Register = () => {
               label="email"
               name="email"
             />
-            <div className="block  text-sm font-medium text-gray-300">
-              age
-            </div>
+            <div className="block  text-sm font-medium text-gray-300">age</div>
             <Input
               value={user.age}
               error={errors?.age}
@@ -181,13 +179,13 @@ const Register = () => {
             {validateForm() === undefined && (
               <button
                 type="submit"
-                className="w-full p-4 rounded-full text-white font-bold text-xl bg-[#be068b] transition duration-250 hover:bg-transparent border border-transparent hover:border-[#be068b]"
+                className="w-full p-4 rounded-full text-white font-bold text-xl bg-[#ff004c] transition duration-250 hover:bg-transparent border border-transparent hover:border-[#ff004c]"
               >
                 Submit
               </button>
             )}
             <span className="text-gray-400">already have an account ?</span>
-            <Link to="/auth" className="text-[#be068b] hover:text-[#be068b90]">
+            <Link to="/auth" className="text-[#ff004c] hover:text-[#ff004c90]">
               go to login
             </Link>
           </div>
